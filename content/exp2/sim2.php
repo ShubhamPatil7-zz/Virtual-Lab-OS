@@ -1,0 +1,14 @@
+<?php
+    include 'nav2.php';
+?>
+    <div class="container" width="85%">
+        <br/><br/><br/>
+        <b></b>Enter the number of processes</b>
+            <input type="number" min="1" max="10" id="n"/>
+            <button class='btn waves-effect waves-light'  type='submit' onclick='createtable();'>Create Table
+             <i class='material-icons right'>send</i></button>
+        <div id="demo"></div>
+        <div id="avg"></div>
+    </div>
+</body>
+</html>
