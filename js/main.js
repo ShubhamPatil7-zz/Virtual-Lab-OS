@@ -7,6 +7,9 @@ $(document).ready(function(){
     $('.slider').slider({height: 580});
 });
 
+
+//Scheduling Algo's
+
 function createtable()
 {
     var n=document.getElementById('n').value;
@@ -183,7 +186,7 @@ function sjf(n)
     var btv = [];
     var wtv = [];
     var tatv = [];
-    var process = [];
+    var stv = [];
     var awt = 0;
     var atat = 0;
     var flag = [];
@@ -192,44 +195,50 @@ function sjf(n)
         atv[i]=parseFloat(document.getElementById('atv'+i).value);//Arival Time
         btv[i]=parseFloat(document.getElementById('btv'+i).value);//Burst Time
         process[i]=i;
-        flag=1;
+        flag=0;
     }
-    
-    
-    for(i=0;i<n;i++)
-    {
-        if(flag[i]==1)
-            continue;
-        else
-        {
-            k=i;
-            while(atv[i]<tst && i<n)
-                i++;
-            for (i = 0; i < n; i++) 
-            {
-                for (j = 0; j < n; j++) 
+    for (i = 0; i<n; i++)
+     {
+          if (flag==1)
+               continue;
+          else
+          {
+                k = i;
+                while(atv[i]<=tst && i<n)
+                    i++;
+                for (k = start; k<i; k++)
                 {
-                    if (atv[i] < atv[j])  
+                    for (j = k+1; j<i; j++)
                     {
-                        temp = p[j];
-                        p[j] = p[i];
-                        p[i] = temp;
-                        temp = atv[j];
-                        atv[j] = atv[i];
-                        atv[i] = temp;
-                        temp1 = btv[j];
-                        btv[j] = btv[i];
-                        btv[i] = temp1;
+                        if(btv[k] < btv[k])
+                            continue;
+                        else
+                        {
+                            temp = p[k];
+                            p[k] = p[j];
+                            p[j] = temp;
+                        }
                     }
                 }
-            }
-        }
-    }
+                i = k;
+                if(atv[i]<=tst)
+                    stv[i] = tst;
+                else
+                    stv[i] = atv[i];
+                stv[i] = tst;
+                flag[i] = 1;
+                tst += btv[i];
+                wtv[i] = stv[i] - atv[i];
+                tatv[i] = btv[i] + wtv[i]; 
+                awt += wtv[i];
+                atat += tatv[i];
+          }
+     }
     
     for(i=0;i<n;i++)
     {
-        document.getElementById('tat'+i).innerHTML=tatv[p[i]];
-        document.getElementById('wt'+i).innerHTML=wtv[p[i]];
+        document.getElementById('tat'+i).innerHTML=tatv[i];
+        document.getElementById('wt'+i).innerHTML=wtv[i];
     }
     awt=awt/n;
     atat=atat/n;
@@ -382,4 +391,111 @@ function rrp(n)
     awt=awt/n;
     atat=atat/n;
     document.getElementById('avg').innerHTML="Average Waiting Time="+awt.toFixed(2)+"<br/>Average Turnaround Time="+atat.toFixed(2);
+}
+
+//Page Replacement Algo's
+
+function fifo()
+{
+    document.getElementById('temp').innerHTML = "";
+    var f,pages;
+    f = parseInt(document.getElementById('frame').value);
+    var frame =[];
+    var num = 0;
+    var pageHit = 0;
+    var flag = true;
+    pages = document.getElementById('page').value;
+    pages = pages.replace(/\s/g, "");//Removes all whitespaces from string
+    pages = pages.split(""); //String to Character array conversion
+    var p = pages.length;
+    
+    for(i=0; i<f; i++)
+    {
+            frame[i] = -1;
+    }
+
+    for(i=0; i<p; i++)
+    {
+        flag = true;
+        var page = pages[i];
+        for(j=0; j<f; j++)
+        {
+            if(frame[j] == page)
+            {
+                flag = false;
+                pageHit++;
+                break;
+            }
+        }
+        if(num == f)
+            num = 0;
+
+        if(flag)
+        {
+            frame[num] = page;
+            num++;
+        }
+        
+        for(k=0; k<f; k++)
+        {
+            if(frame[k]== -1)
+                frame[k] = "-";
+            $("#temp").append(frame[k]+"  ");
+        }
+        $("#temp").append("<br/>");
+    }
+    var pageFault = p - pageHit;
+    $("#temp").append("Page Hits : "+pageHit);
+    $("#temp").append("<br/>Page Fault : "+pageFault);
+}
+
+function lru()
+{
+    document.getElementById('temp').innerHTML = "";
+    var f,pages;
+    f = parseInt(document.getElementById('frame').value);
+    var frame =[];
+    var num = 0;
+    var pageHit = 0;
+    var flag = true;
+    pages = document.getElementById('page').value;
+    pages = pages.replace(/\s/g, "");//Removes all whitespaces from string
+    pages = pages.split(""); //String to Character array conversion
+    var p = pages.length;
+    
+    for(i=0; i<f; i++)
+    {
+            frame[i] = -1;
+    }
+
+    for(i=0; i<p; i++)
+    {
+        flag = true;
+        var page = pages[i];
+        for(j=0; j<f; j++)
+        {
+            if(frame[j] == page)
+            {
+                flag = false;
+                pageHit++;
+                break;
+            }
+        }
+        if(num == f)
+            num = 0;
+
+        if(flag)
+        {
+            frame[num] = page;
+            num++;
+        }
+        
+        for(k=0; k<f; k++)
+        {
+            if(frame[k]== -1)
+                frame[k] = "-";
+            $("#temp").append(frame[k]+"  ");
+        }
+        $("#temp").append("<br/>");
+    }
 }

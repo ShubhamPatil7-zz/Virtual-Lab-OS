@@ -14,7 +14,7 @@
 <?php
         for($i=0;$i<$_GET['n'];$i++)
         {
-            echo "<tbody><tr><td id='pn$i'>Process $i</td><td id='bt$i'><input type='number' id='btv$i' required/></td><td id='p$i'><input type='number' id='pv$i'
+            echo "<tbody><tr><td id='pn$i'>P$i</td><td id='bt$i'><input type='number' id='btv$i' required/></td><td id='p$i'><input type='number' id='pv$i'
                  required/></td><td id='tat$i' disabled></td><td id='wt$i' disabled></td></tr></tbody>";
         }
         echo "</table>";

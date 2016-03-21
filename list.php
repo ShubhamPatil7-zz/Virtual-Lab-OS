@@ -15,8 +15,8 @@
 				<ul class="collapsible popout" data-collapsible="accordion" style="margin-top: 50px;" >
                 <li>
                     <div class="collapsible-header"><i class="material-icons">whatshot</i>Page Replacement Policies</div>
-                    <div class="collapsible-body" style="display: block;height: 40px;text-align: -webkit-left;font-size: medium;"><a href="content/exp5/aim5.php">5.Least Recently Used</a></div>
-                    <div class="collapsible-body" style="display: block;height: 40px;text-align: -webkit-left;font-size: medium;"><a href="content/exp6/aim6.php">6.First In First Out</a></div>
+                    <div class="collapsible-body" style="display: block;height: 40px;text-align: -webkit-left;font-size: medium;"><a href="content/exp5/aim5.php">5.First In First Out</a></div>
+                    <div class="collapsible-body" style="display: block;height: 40px;text-align: -webkit-left;font-size: medium;"><a href="content/exp6/aim6.php">6.Least Recently Used</a></div>
                     <div class="collapsible-body" style="display: block;height: 40px;text-align: -webkit-left;font-size: medium;"><a href="content/exp7/aim7.php">7.OPTIMAL</a></div>
                     <div class="collapsible-body" style="display: block;height: 40px;text-align: -webkit-left;font-size: medium;"><a href="content/exp8/aim8.php">8.Not Recently Used </a></div>
                 </li>
