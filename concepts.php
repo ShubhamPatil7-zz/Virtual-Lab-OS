@@ -57,7 +57,7 @@
             </p></div>
             </li>
         </ul>
-
+        <!--
         <blockquote><b>Deadlocks</b></blockquote>
         <ul class="collapsible" data-collapsible="expandable">
             <li>
@@ -77,6 +77,7 @@
                 </div>
             </li>
         </ul>
+        -->
     </div>
 </body>
 </html>

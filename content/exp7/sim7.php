@@ -1,5 +1,5 @@
 <?php
-    include 'nav6.php';
+    include 'nav7.php';
 ?>
     <br/><br/><br/>
     <div class="container" style= "width:90%;">
@@ -18,7 +18,7 @@
                       <label for="frame">Frame size</label>
                    </div>
                 </div>
-                <center><a class="waves-effect waves-light btn" onclick='fifo();'>
+                <center><a class="waves-effect waves-light btn" onclick='optimal();'>
                    <i class="material-icons right">send</i>Submit</a>
                 </center>
              </form>

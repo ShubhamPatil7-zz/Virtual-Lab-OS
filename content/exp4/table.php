@@ -1,6 +1,3 @@
-<b>Enter the Quantum Time</b>
-<input type="number" id="Q"/>
-
 <table class="responsive-table highlight centered" id="processcal">
     <thead>
         <tr>
@@ -14,7 +11,8 @@
 <?php
         for($i=0;$i<$_GET['n'];$i++)
         {
-            echo "<tbody><tr><td id='pn$i'>P$i</td><td id='bt$i'><input type='number' id='btv$i' required/></td><td id='p$i'><input type='number' id='pv$i'
+            $j=$i+1;
+            echo "<tbody><tr><td id='pn$i'>Process$j</td><td id='bt$i'><input type='number' min='1' max='20' id='btv$i' required/></td><td id='p$i'><input type='number' min='1' max='10' id='pv$i'
                  required/></td><td id='tat$i' disabled></td><td id='wt$i' disabled></td></tr></tbody>";
         }
         echo "</table>";

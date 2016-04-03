@@ -9,5 +9,3 @@
 	  <img src="a3.jpg" style="width: 50%; margin: 40px;" />
 	  
 	  </div></li>
- </body>
- </html>

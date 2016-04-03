@@ -1,7 +1,6 @@
 <?php
-    include 'content/nav.php';
+	include 'content/nav.php';
 ?>
-
     <div class="container" style="margin-top:20px;width:60%;">
         <ul class="collapsible popout" data-collapsible="accordion" style="margin-top: 50px;">
             <li>
@@ -10,9 +9,7 @@
                     The experiments are targeted at students of graduate and post graduate courses in computer science and related fields.
                 </div>
             </li>
-            
         </ul>
     </div>
 </body>
-    
 </html>

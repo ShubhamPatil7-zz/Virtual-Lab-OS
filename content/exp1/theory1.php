@@ -25,9 +25,9 @@
         <li>
           <div class="collapsible-header"><i class="material-icons">whatshot</i>Example</div>
           <div class="collapsible-body"><p>Process    Burst Time<br>
-                                            P1 		24 <br>
-                        P2		03 <br>
-                        P3		03 <br>
+                                            P1&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 		24 <br>
+                                            P2&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp		03 <br>
+                                            P3&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp		03 <br>
                         Suppose that the processes arrive in the order: P1 , P2 , P3 <br><br>
                         The Gantt Chart for the schedule is: 0 24 27 30 <br><br>
                         Waiting time for P1 = 0; P2 = 24; P3 = 27 <br><br>

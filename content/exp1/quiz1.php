@@ -1,6 +1,31 @@
 <?php
     include 'nav1.php';
 ?>
+    <script type = "text/javascript">
+	$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+	</script>
+
+    <!-- Modal Trigger -->
+  
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4><u>First Come First Serve</u></h4>
+      <p style="font-size:1.2em">Ans 1)  Multiprogramming</p>
+	  <p style="font-size:1.2em">Ans 2)  Throughput</p>
+	  <p style="font-size:1.2em">Ans 3)  All of the above </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  
+
+
 	<div class="container" style="width:80%;">
     <p><blockquote style="margin-top: 50px;"><h5>Which technique was introduced because a single job could not keep both the CPU and the I/O devices busy??</h5></blockquote></p>
     <p>
@@ -60,6 +85,7 @@
 	
 	</div>
 	<div class="container" style="width:25%;">
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button></div>
+    <a class="waves-effect waves-light btn modal-trigger"  data-target="modal1" href="#modal1">Submit</a>
+         </div></div><!--<i class="material-icons right">send</i></button></div>-->
 	</body>
 	</html>

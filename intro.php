@@ -3,13 +3,13 @@
 ?>
 
     <div class="container" style="margin-top:20px;">
-    <ul class="collapsible popout" data-collapsible="accordion" style="margin-top: 50px;">
+        <ul class="collapsible popout" data-collapsible="accordion" style="margin-top: 50px;">
         <li>
             <div class="collapsible-header active"><i class="material-icons">whatshot</i>What is OS</div>
                 <div class="container collapsible-body" style="width:90%;">
                 A large and complex software component for the operation and control of the computer system.<br/>
                 • It acts as an intermediary between a user and the computer system.<br/>
-                • Examples: Unix, MS Windows, MacOS, Linux<br/>
+                • Examples: Unix, MS Windows, MacOS, Linuxbr<br/>
                 • A provider of services to user programs<br/>
                 A huge resource manager<br/>In short,<br/>
                 <b>An Operating system</b> is basically a intermediary agent between the user and the computer hardware.<br/>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>LRU Page Replacement Algorithm</title>
+    <title>FIFO Page Replacement Algorithm</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8"/>
@@ -22,7 +22,7 @@
 	<nav>
         <div class="nav-wrapper">
 		   <a href="../../index.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
-            <a href="#!" class="brand-logo">&emsp;&emsp;&emsp;LRU Page Replacement Algorithm</a>
+            <a href="#!" class="brand-logo">&emsp;&emsp;&emsp;FIFO Page Replacement Algorithm</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="aim6.php">Aim</a></li>
