@@ -20,9 +20,10 @@
 
 <body>
 	<nav>
+        <label class="brand-text">Round Robin With Priority</label>
         <div class="nav-wrapper">
 		    <a href="../../index.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
-            <a href="brand-logo" class="brand-logo">&emsp;&emsp;&emsp;Scheduling Algorithm : Round Robin With Priority</a>
+            <a href="brand-logo" class="brand-logo">&emsp;&emsp;&emsp;Round Robin With Priority</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="aim4.php">Aim</a></li>

@@ -1,38 +1,55 @@
 <?php
-	include 'content/nav.php';
+    include 'content/nav.php';
 ?>
     <script type = "text/javascript">
         $(document).ready(function(){
-           // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
            $('.modal-trigger').leanModal();
          });
+
     </script>
-    <!-- Modal Trigger -->
-    <!-- Modal Structure -->
+    
     <div id="modal1" class="modal bottom-sheet">
         <div class="modal-content">
             <h4><u>Scheduling Algorithms</u></h4>
-            <p style="font-size:1.2em">Ans 1)  Turn Around time</p>
-            <p style="font-size:1.2em">Ans 2)  Maximum Throughput & Minimum Turnaround time</p>
-            <p style="font-size:1.2em">Ans 3)  TurnaroundTime=BurstTime + WaitingTime</p>
-            <p style="font-size:1.2em">Ans 4)  Waiting Time=StartTime - ArrivalTime</p>
+            <p style="font-size:1.2em">Ans 1)  Turn Around time
+            <div id="a1"></div>
+            </p>
+            <p style="font-size:1.2em">Ans 2)  Maximum Throughput & Minimum Turnaround time
+            <div id="a2"></div>
+            </p>
+            <p style="font-size:1.2em">Ans 3)  TurnaroundTime=BurstTime + WaitingTime
+            <div id="a3"></div>
+            </p>
+            <p style="font-size:1.2em">Ans 4)  Waiting Time=StartTime - ArrivalTime
+            <div id="a4"></div>
+            </p>
         </div>
         <div class="modal-footer">
             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
         </div>
     </div>
+    
     <div id="modal2" class="modal bottom-sheet">
         <div class="modal-content">
             <h4><u>Page Replacement Policies</u></h4>
-            <p style="font-size:1.2em">Ans 1)  When a requested page is not in memory</p>
-            <p style="font-size:1.2em">Ans 2)  Shortest Job Next </p>
-            <p style="font-size:1.2em">Ans 3)  Shortest Remaining Time</p>
-            <p style="font-size:1.2em">Ans 4)  Dispatcher Scheduler</p>
+            <p style="font-size:1.2em">Ans 1)  When a requested page is not in memory
+            <div id="b1"></div>
+            </p>
+            <p style="font-size:1.2em">Ans 2)  Shortest Job Next
+            <div id="b2"></div>
+            </p>
+            <p style="font-size:1.2em">Ans 3)  Shortest Remaining Time
+            <div id="b3"></div>
+            </p>
+            <p style="font-size:1.2em">Ans 4)  Dispatcher Scheduler
+            <div id="b4"></div>
+            </p>
         </div>
         <div class="modal-footer">
             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
         </div>
     </div>
+    
     <div class="row">
         <div class="col s12">
             <ul class="tabs">
@@ -41,6 +58,7 @@
             </ul>
         </div>
     </div>
+    
     <div id="test02" class="col s12" style="width:97%;">
         <table style="width:100%;margin-top: 50px;">
             <tr>
@@ -177,6 +195,7 @@
         </div>
     </div>
     </div>
+    
     <div  id="test01" class="col s12" style="width:97%;">
         <table style="width:100%">
             <tr>

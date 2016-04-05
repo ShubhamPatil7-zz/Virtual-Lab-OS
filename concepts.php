@@ -45,7 +45,8 @@
         <ul class="collapsible" data-collapsible="expandable">
             <li>
                 <div class="collapsible-header"><i class="material-icons">whatshot</i>Page Hit</div>
-                <div class="collapsible-body"><p>A hit is a request to a web server for a file, like a web page, image, JavaScript, or Cascading Style Sheet. When a web page is downloaded from a server the number of "hits" or "page hits" is equal to the number of files requested.</p></div>
+                <div class="collapsible-body"><p>When a searched page found in main memory which is not 
+				present in virtual memory,it's a page hit</p></div>
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">whatshot</i>Page Fault</div>

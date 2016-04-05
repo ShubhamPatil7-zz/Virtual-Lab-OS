@@ -8,14 +8,69 @@ div#avg2 {
     text-transform: capitalize;
 }
 
-div#avg2 > div {
+div#avg2 > div,div#avg3>div {
 	height: 100%;
 	float: left;
 	width: 0px;
 	transition: width 1s;
     -webkit-transition: width 1s;
 }
-   
+
+div#avg3
+{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+label.brand-text{
+    display: none;
+}
+
+@media print {
+    body {
+        font-size: 1.5em;
+        -webkit-print-color-adjust: exact; 
+    }
+    label.brand-text {
+        font-size: 2em;
+        border-bottom: solid 2px orange;
+        display: block;
+        text-align: center;
+    }
+    div.nav-wrapper{
+        display: none;
+    }
+    table {
+        width: 100%;
+        display: table;
+        margin-bottom: 10pt;
+    }
+    input {
+        font-size: 1em;
+    }
+    input#n {
+        margin: 0px;
+        font-size: 20pt;
+    }
+    .btn {
+        display: none;
+    }
+    div#avg2{
+        margin-top: 15pt;
+        height: 75px;
+    }
+    #temp{
+        margin-top: 15pt;
+    }
+    div#avg3{
+        display: block;
+        padding: 0px;
+    }
+    div.sim5{
+        font-size: 25pt;
+    }
+}
+
 .ganttNumber{
 	position:absolute;
     font-size: 1.7em;
@@ -23,9 +78,7 @@ div#avg2 > div {
  }
 
 div#temp{
-  font-size: 1.7em;
-    text-align: center;
-  
+    font-size: 1.7em; 
 }
 div#temp1{
   font-size: 1.7em;

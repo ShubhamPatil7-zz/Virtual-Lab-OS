@@ -1,6 +1,6 @@
 <?php
-	include 'content/nav.php';
-	?>
+    include 'content/nav.php';
+?>
     <br/><br/><br/>
     <div class="container">
         <div class="row">
@@ -35,5 +35,6 @@
     <div class="container" style="width:20%;">
         <a class="waves-effect waves-teal btn-flat" onclick="Materialize.toast('Thank You For Your Feedback', 5000)">Submit</a>
     </div>
+    
 </body>
 </html>

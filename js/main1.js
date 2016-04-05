@@ -80,7 +80,7 @@ function fcfs1(n)
 	{
 		if (document.getElementById('atv' + i).value == "" || document.getElementById('btv' + i).value == "" ||
 			parseFloat(document.getElementById('atv' + i).value) < 0.0 || parseFloat(document.getElementById('atv' + i).value) > 40.0 ||
-			parseFloat(document.getElementById('btv' + i).value) <= 0.0 || parseFloat(document.getElementById('btv' + i).value) > 40.0)
+			parseFloat(document.getElementById('btv' + i).value) < 0.0 || parseFloat(document.getElementById('btv' + i).value) > 40.0)
 			var check = true;
 	}
 	if (check)
@@ -246,7 +246,7 @@ function sjf(n)
 	{
 		if (document.getElementById('atv' + i).value == "" ||  document.getElementById('btv' + i).value == "" ||
             parseFloat(document.getElementById('atv' + i).value) < 0.0 || parseFloat(document.getElementById('atv' + i).value) > 40.0 ||
-			parseFloat(document.getElementById('btv' + i).value) <= 0.0 || parseFloat(document.getElementById('btv' + i).value) > 40.0)
+			parseFloat(document.getElementById('btv' + i).value) < 0.0 || parseFloat(document.getElementById('btv' + i).value) > 40.0)
 			var check = true;
 	}
 	if (check)
@@ -414,14 +414,10 @@ function datasend1()
 		if (idle1[i] != 0 && i != 0)
 		{
 			output += "<div id='idle" + (i - 1) + "'>Idle</div>";
-			output1 += "<div id='midle" + (i - 1) + "'></div>";
 		}
 		output += "<div id='div" + i + "'>P" + ind1[i] + "</div>";
-		output1 += "<div id='mdiv" + i + "'></div>";
 	}
-	output1 += "<div id='mdiv" + (n+1) + "'></div>";
 	document.getElementById('avg2').innerHTML = output;
-	document.getElementById('avg3').innerHTML = output1;
 	var pos = []; //optional array which stores left position of each div. not used anywhere. kept for further reference
 
 	var color = ["red", "green", "blue", "orange", "purple"];
@@ -436,18 +432,33 @@ function datasend1()
 			{
 				document.getElementById('div' + i).style.backgroundColor = color[i % color.length];
 				document.getElementById('div' + i).style.width = total * (et1[i] - st1[i]) + "%";
-				document.getElementById('mdiv' + i).style.width = total * (et1[i] - st1[i]) + "%";
-				if(i==0)
-					document.getElementById('mdiv' + i).innerHTML = "0";
-				else document.getElementById('mdiv' + i).innerHTML = st1[i];
+
+
+				//get current div of gantt chart. push left value into pos(optional). find out left value and store in left for use below
+				var ele = document.getElementById('div' + i);
+				pos.push(ele.offsetLeft);
+				var left = ele.offsetLeft;
+
+				//create div for numbering gantt chart dynamically. assign it name myDivX (X value of i). assign innerhtml as required start time of process
+				document.getElementById("avg3").innerHTML += '<div style="left:' + left + 'px;" id="myDiv' + i + '" class="ganttNumber">';
+				document.getElementById("myDiv" + i).innerHTML = st1[i];
+
+
+				//try catch used in case array goes out of bounds
 				try
 				{
 					if (idle[i + 1] != 0)
 					{
 						document.getElementById('idle' + i).style.backgroundColor = "black";
 						document.getElementById('idle' + i).style.width = total * (st1[i + 1] - et1[i]) + "%";
-						document.getElementById('midle' + i).style.width = total * (st1[i + 1] - et1[i]) + "%";
-						document.getElementById('midle' + i).innerHTML = et1[i];
+
+						//repeat same steps as those for dynamic div mentioned above
+						var idleEle = document.getElementById("idle" + i);
+						var idleLeft = idleEle.offsetLeft;
+						pos.push(idleLeft);
+
+						//document.getElementById("avg3").innerHTML+='<div style="left:'+idleLeft+'px;" id="myIdleDiv'+i+'" class="ganttNumber">';
+						//document.getElementById("myIdleDiv"+i).innerHTML=et[i];
 					}
 				}
 				catch (e)
@@ -457,7 +468,12 @@ function datasend1()
 			}, time)
 		})(i);
 	}
-	document.getElementById('mdiv' + (n+1)).innerHTML = et1[n-1];
+	//code below is used to attach end time of last process
+
+	var positionForLast = document.getElementById("avg2").offsetLeft + document.getElementById("avg2").offsetWidth;
+	//document.getElementById("avg3").innerHTML+='<div style="top:'+topPositionForLast+'px; left:'+positionForLast+'px;" id="myLastDiv" class="ganttNumber">';
+	document.getElementById("avg3").innerHTML += '<div style="left:' + positionForLast + 'px;" id="myLastDiv" class="ganttNumber">';
+	document.getElementById("myLastDiv").innerHTML = et1[n - 1];
 }
 
 function rr(n)
@@ -478,7 +494,7 @@ function rr(n)
 	{
 		if (document.getElementById('atv' + i).value == "" || document.getElementById('btv' + i).value == "" ||
 			parseFloat(document.getElementById('atv' + i).value) < 0.0 || parseFloat(document.getElementById('atv' + i).value) > 40.0 ||
-			parseFloat(document.getElementById('btv' + i).value) <= 0.0 || parseFloat(document.getElementById('btv' + i).value) > 40.0)
+			parseFloat(document.getElementById('btv' + i).value) < 0.0 || parseFloat(document.getElementById('btv' + i).value) > 40.0)
 			var check = true;
 	}
 	if (check)
@@ -527,7 +543,6 @@ function rr(n)
 		document.getElementById('avg').innerHTML = "Average Waiting Time = " + awt.toFixed(2) + "<br/>Average Turnaround Time = " + atat.toFixed(2);
 	}
 }
-
 function rrp(n)
 {
     var btv = [];
@@ -547,134 +562,122 @@ function rrp(n)
 	var indices1=[];
 	var atat = 0;
     var i,j,k,l;
-    for (i = 0; i < n; i++)
-	{
-		if (document.getElementById('btv' + i).value == "" ||  document.getElementById('pv' + i).value == "" ||
-            parseFloat(document.getElementById('btv' + i).value) < 0.0 || parseFloat(document.getElementById('btv' + i).value) > 40.0 ||
-			parseFloat(document.getElementById('pv' + i).value) <= 0.0 || parseFloat(document.getElementById('pv' + i).value) > 10.0)
-			var check = true;
-	}
-	if (check)
-		alert("Please fill all the values between 0 to 40");
-	else
-	{
-	    for(i=0;i<n;i++)
-	    {
-	        btv[i]=parseFloat(document.getElementById('btv'+i).value);//Burst Time       
-	        p[i]=parseFloat(document.getElementById('pv'+i).value);//Priority
-			copyp[i]=p[i];
-			copyp1[i]=p[i];
-	        process[i]=i;
-	        wtv[i] = 0;
-	        tatv[i] = 0;
-	        rem[i] = 0;
-	        
-	    }
+    for(i=0;i<n;i++)
+    {
+        btv[i]=parseFloat(document.getElementById('btv'+i).value);//Burst Time       
+        p[i]=parseFloat(document.getElementById('pv'+i).value);//Priority
+		copyp[i]=p[i];
+		copyp1[i]=p[i];
+        process[i]=i;
+        wtv[i] = 0;
+        tatv[i] = 0;
+        rem[i] = 0;
+        
+    }
 
-	    for(k=0;k<n;k++) 
-	    {
-	        for (l=k+1;l<n;l++) 
-	        {
-	            if (p[k]>p[l]) 
-	            {
-	                temp = p[k];
-	                p[k] = p[l];
-	                p[l] = temp;
-	                temp = process[k];
-	                process[k] = process[l];
-	                process[l] = temp;
-	                temp = btv[k];
-	                btv[k] = btv[l];
-	                btv[l] = temp;
-	            }
-	        }
-	    }//alert(btv);
-	    
-	    for(i=0;i<n;i++)
-	        rem[i]=btv[i];
-	    do
-	    {
-	        flag = 0;
-	        for(i=0;i<n;i++) 
-	        {
-	            if (rem[i] >= qtv) 
-	            {
-	                for(j=0;j<n;j++) 
-	                {
-	                    if(j==i)
-	                        rem[i]=rem[i]-qtv;
-	                    else if(rem[j]>0)
-	                            wtv[j]+=qtv;
-	                }
-	            } 
-	            else if (rem[i] > 0) 
-	            {
-	                for (j = 0; j < n; j++) 
-	                {
-	                    if (j == i)
-	                        rem[i] = 0;
-	                    else if (rem[j] > 0)
-	                            wtv[j] += rem[i];
-	                }
-	            }
-	        }
-	        for (i = 0; i < n; i++)
-	            if (rem[i] > 0)
-	                flag = 1;
-	        //alert(wtv[i]);
-	        //alert(tatv[i]);
-	    } while (flag == 1);
-	    
-	    for(i=0;i<n;i++)
-	    {            
-	        tatv[i]=wtv[i]+btv[i];
-	        //alert(wtv[i]);
-	        //alert(tatv[i]);
-	    }
-	    
-	     for(i=0;i<n;i++)
-	           {
-	               index=copyp.indexOf(p[i]);
-	               copyp[index]=-1;
-	               indices[i]=index; 
-	               index1=copyp1.indexOf(p[i]);
-	               copyp1[index1]=-1;
-	               indices1[i]=index1;
-	           }
-	     for(i=0; i<n; i++)
-	              {
-	                  if(indices[i]!=-1)
-	                      {
-	                          document.getElementById('wt'+indices[i]).innerHTML=wtv[i];
-	                          indices[i]=-1;
-	                      }
-	              
-	                  else document.getElementById('wt'+indices[i]).innerHTML=wtv[i];
-	              }
-		 for(i=0; i<n; i++)
-	              {
-	                  if(indices1[i]!=-1)
-	                      {
-	                          document.getElementById('tat'+indices1[i]).innerHTML=tatv[i];
-	                          indices1[i]=-1;
-	                      }
-	              
-	                  else document.getElementById('tat'+indices1[i]).innerHTML=tatv[i];
-	              }  
-		
-		for(i=0;i<n;i++)
-	    {
-	        //document.getElementById('tat'+i).innerHTML=tatv[i];
-	        //document.getElementById('wt'+i).innerHTML=wtv[i];
-	        awt += wtv[i];
-	        atat += tatv[i];
-	    }
-	    
-	    awt=awt/n;
-	    atat=atat/n;
-	    document.getElementById('avg').style.display="block";
-	    document.getElementById('avg').innerHTML="Average Waiting Time="+awt.toFixed(2)+"<br/>Average Turnaround Time="+atat.toFixed(2);
-	}
+    for(k=0;k<n;k++) 
+    {
+        for (l=k+1;l<n;l++) 
+        {
+            if (p[k]>p[l]) 
+            {
+                temp = p[k];
+                p[k] = p[l];
+                p[l] = temp;
+                temp = process[k];
+                process[k] = process[l];
+                process[l] = temp;
+                temp = btv[k];
+                btv[k] = btv[l];
+                btv[l] = temp;
+            }
+        }
+    }//alert(btv);
+    
+    for(i=0;i<n;i++)
+        rem[i]=btv[i];
+    do
+    {
+        flag = 0;
+        for(i=0;i<n;i++) 
+        {
+            if (rem[i] >= qtv) 
+            {
+                for(j=0;j<n;j++) 
+                {
+                    if(j==i)
+                        rem[i]=rem[i]-qtv;
+                    else if(rem[j]>0)
+                            wtv[j]+=qtv;
+                }
+            } 
+            else if (rem[i] > 0) 
+            {
+                for (j = 0; j < n; j++) 
+                {
+                    if (j == i)
+                        rem[i] = 0;
+                    else if (rem[j] > 0)
+                            wtv[j] += rem[i];
+                }
+            }
+        }
+        for (i = 0; i < n; i++)
+            if (rem[i] > 0)
+                flag = 1;
+        //alert(wtv[i]);
+        //alert(tatv[i]);
+    } while (flag == 1);
+    
+    for(i=0;i<n;i++)
+    {            
+        tatv[i]=wtv[i]+btv[i];
+        //alert(wtv[i]);
+        //alert(tatv[i]);
+    }
+    
+     for(i=0;i<n;i++)
+           {
+               index=copyp.indexOf(p[i]);
+               copyp[index]=-1;
+               indices[i]=index; 
+               index1=copyp1.indexOf(p[i]);
+               copyp1[index1]=-1;
+               indices1[i]=index1;
+           }
+     for(i=0; i<n; i++)
+              {
+                  if(indices[i]!=-1)
+                      {
+                          document.getElementById('wt'+indices[i]).innerHTML=wtv[i];
+                          indices[i]=-1;
+                      }
+              
+                  else document.getElementById('wt'+indices[i]).innerHTML=wtv[i];
+              }
+	 for(i=0; i<n; i++)
+              {
+                  if(indices1[i]!=-1)
+                      {
+                          document.getElementById('tat'+indices1[i]).innerHTML=tatv[i];
+                          indices1[i]=-1;
+                      }
+              
+                  else document.getElementById('tat'+indices1[i]).innerHTML=tatv[i];
+              }  
+	
+	for(i=0;i<n;i++)
+    {
+        //document.getElementById('tat'+i).innerHTML=tatv[i];
+        //document.getElementById('wt'+i).innerHTML=wtv[i];
+        awt += wtv[i];
+        atat += tatv[i];
+    }
+    
+    awt=awt/n;
+    atat=atat/n;
+    document.getElementById('avg').style.display="block";
+    document.getElementById('avg').innerHTML="Average Waiting Time="+awt.toFixed(2)+"<br/>Average Turnaround Time="+atat.toFixed(2);
 }
 
 //Page Replacement Algos
@@ -692,8 +695,6 @@ function lru()
 	pages = pages.replace(/\s/g, ""); //Removes all whitespaces from string
 	pages = pages.split(""); //String to Character array conversion
 	var p = pages.length;
-
-	document.getElementById('temp').style.display="block";
 
 	if ((f < 1 || f > 9) || (p < 1 || p > 30))
 		alert("Enter the frame size between 1 and 9 \nMAX page limit is 30");
@@ -743,7 +744,6 @@ function lru()
 			$("#temp").append(content);
 		}
 		var ph = p - pf;
-
 		$("#temp").append("<br/><br/>Page Hits : " + ph);
 		$("#temp").append("<br/>Page Fault : " + pf);
 	}
@@ -762,8 +762,6 @@ function fifo()
 	pages = pages.replace(/\s/g, ""); //Removes all whitespaces from string
 	pages = pages.split(""); //String to Character array conversion
 	var p = pages.length;
-
-	document.getElementById('temp').style.display="block";
 
 	if ((f < 1 || f > 9) || (p < 1 || p > 30))
 		alert("Enter the frame size between 1 and 9 \nMAX page limit is 30");
@@ -825,7 +823,6 @@ function optimal()
 	pages = pages.split(""); //String to Character array conversion
 	var p = pages.length;
 
-	document.getElementById('temp').style.display="block";
 
 	if ((f < 1 || f > 9) || (p < 1 || p > 30))
 		alert("Enter the frame size between 1 and 9 \nMAX page limit is 30");
@@ -944,8 +941,7 @@ function lfu()
 	pages = pages.split(""); //String to Character array conversion
 	var p = pages.length;
 
-	document.getElementById('temp').style.display="block";
-	
+
 	if ((f < 1 || f > 9) || (p < 1 || p > 30))
 		alert("Enter the frame size between 1 and 9 \nMAX page limit is 30");
 	else

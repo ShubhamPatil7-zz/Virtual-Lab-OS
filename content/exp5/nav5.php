@@ -20,6 +20,7 @@
 
 <body>
 	<nav>
+        <label class="brand-text">LRU Page Replacement Algorithm</label>
         <div class="nav-wrapper">
 		   <a href="../../index.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
             <a href="#!" class="brand-logo">&emsp;&emsp;&emsp;Least Recently Used</a>

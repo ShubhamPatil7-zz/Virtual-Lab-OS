@@ -1,8 +1,7 @@
 import java.util.*;
 class process1 
 {
-    public static void main(String args[]) 
-    {
+    public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
         int c = 0, r = 0, n = 0, temp = 0, a = 0;
         float s1 = 0.0 f, s2 = 0.0 f;

@@ -1,86 +1,93 @@
 import java.util.*;
-class rrp
+class process1 
 {
-    public static void main(String args[]) throws Exception {
+    public static void main(String args[]) throws Exception 
+    {
         Scanner sc = new Scanner(System.in);
-        int btv[], rem[], wtv[], tatv[], p[], process[];
-        int n = 0, q, awt = 0, atat = 0, flag = 0, temp = 0;
-
-        System.out.print("Enter the no of processes:");
-        n = sc.nextInt();
-
-        btv = new int[n];
-        wtv = new int[n];
-        tatv = new int[n];
-        p = new int[n];
-        rem = new int[n];
-        process = new int[n];
-
+        int bur[], rem[], wai[], ta[], p[], p1[];
+        int size = 0, q, b = 0, t = 0, flag = 0, temp = 0;
+        System.out.print("Enter the no of process:");
+        size = sc.nextInt();
+        bur = new int[size];
+        wai = new int[size];
+        ta = new int[size];
+        p = new int[size];
+        rem = new int[size];
+        p1 = new int[size];
         System.out.print("Enter burst time:");
-        for (int i = 0; i < n; i++)
-            btv[i] = sc.nextInt();
+        for (int i = 0; i < size; i++)
+            bur[i] = sc.nextInt();
 
         System.out.print("Enter priority:");
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < size; i++)
             p[i] = sc.nextInt();
 
-        for (int i = 0; i < n; i++)
-            process[i] = i;
+        for (int i = 0; i < size; i++)
+            p1[i] = i;
 
         System.out.print("Enter quantum time:");
         q = sc.nextInt();
-
-        for (int k = 0; k < n; k++) 
+        
+        for (int k = 0; k < size; k++)
         {
-            for (int l = k + 1; l < n; l++) {
-                if (p[k] > p[l]) {
+            for (int l = k + 1; l < size; l++)
+            {
+                if (p[k] > p[l])
+                {
                     temp = p[k];
                     p[k] = p[l];
                     p[l] = temp;
-                    temp = process[k];
-                    process[k] = process[l];
-                    process[l] = temp;
-                    temp = btv[k];
-                    btv[k] = btv[l];
-                    btv[l] = temp;
+                    temp = p1[k];
+                    p1[k] = p1[l];
+                    p1[l] = temp;
+                    temp = bur[k];
+                    bur[k] = bur[l];
+                    bur[l] = temp;
                 }
             }
         }
-        for (int i = 0; i < n; i++)
-            rem[i] = btv[i];
-        do {
+        for (int i = 0; i < size; i++)
+            rem[i] = bur[i];
+        do
+        {
             flag = 0;
-            for (int i = 0; i < n; i++) {
-                if (rem[i] >= q) {
-                    for (int j = 0; j < n; j++) {
+            for (int i = 0; i < size; i++) 
+            {
+                if (rem[i] >= q) 
+                {
+                    for (int j = 0; j < size; j++) 
+                    {
                         if (j == i)
                             rem[i] = rem[i] - q;
                         else if (rem[j] > 0)
-                            wtv[j] += q;
+                            wai[j] += q;
                     }
-                } else if (rem[i] > 0) {
-                    for (int j = 0; j < n; j++) {
-                        if (j == i)
-                            rem[i] = 0;
-                        else if (rem[j] > 0)
-                            wtv[j] += rem[i];
-                    }
-                }
+                } 
+                else if (rem[i] > 0) 
+                     {
+                          for (int j = 0; j < size; j++) 
+                          {
+                            if (j == i)
+                                rem[i] = 0;
+                            else if (rem[j] > 0)
+                                   wai[j] += rem[i];
+                          }
+                     }
             }
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < size; i++)
                 if (rem[i] > 0)
                     flag = 1;
         } while (flag == 1);
-        for (int i = 0; i < n; i++)
-            tatv[i] = wtv[i] + btv[i];
+        for (int i = 0; i < size; i++)
+            ta[i] = wai[i] + bur[i];
         System.out.println("\nProcess\tPriority\tBurst time\tWaiting time\tTurnaroundtime");
-        for (int i = 0; i < n; i++) {
-            System.out.println("P" + process[i] + "\t" + p[i] + "\t\t" + btv[i] + "\t\t" + wtv[i] + "\t\t" + tatv[i]);
-            awt += wtv[i];
-            atat += tatv[i];
+        for (int i = 0; i < size; i++) 
+        {
+            System.out.println("P" + p1[i] + "\t" + p[i] + "\t\t" + bur[i] + "\t\t" + wai[i] + "\t\t" + ta[i]);
+            b += wai[i];
+            t += ta[i];
         }
-
-        System.out.println("Average waiting time:" + (awt / n));
-        System.out.println("Average Turnaround time:" + (atat / n));
+        System.out.println("Average waiting time:" + (b / size));
+        System.out.println("Average Turnaround time:" + (t / size));
     }
 }

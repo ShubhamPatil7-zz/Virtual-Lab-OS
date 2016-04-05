@@ -23,7 +23,7 @@
                 </center>
              </form>
           </div>
-          <div id="temp" class="card-panel indigo lighten-5"></div>
+          <div id="temp" style="display:none" class="card-panel indigo lighten-5"></div>
        </div>
     </div>
 </body>

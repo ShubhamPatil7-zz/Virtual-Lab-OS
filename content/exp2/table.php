@@ -1,4 +1,4 @@
-<table class="responsive-table highlight centered" id="processcal">
+<table class="responsive-table highlight centered" border id="processcal">
     <thead>
         <tr>
             <th>Process</th>
@@ -27,4 +27,6 @@
              <i class='material-icons right'>send</i></button></center><br>";
 		echo "<button class='btn waves-effect waves-light' type='submit' onclick='datasend1(".$_GET['n'].")'>Show Gantt
              <i class='material-icons right'>launch</i></button>";
+        echo "<button class='btn waves-effect waves-light' style='margin-left:20px;' type='submit' onclick='window.print();'>Print
+          <i class='material-icons right'>launch</i></button></div>";
 ?>

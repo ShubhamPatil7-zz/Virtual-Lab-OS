@@ -20,9 +20,10 @@
 
 <body>
 	<nav>
+        <label class="brand-text">First Come First Serve</label>
         <div class="nav-wrapper">
 		   <a href="../../index.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">home</i></a>
-            <a href="#!" class="brand-logo">&emsp;&emsp;&emsp;Scheduling Algorithm : First Come First Serve</a>
+            <a href="#!" class="brand-logo">&emsp;&emsp;&emsp;First Come First Serve</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="aim1.php">Aim</a></li>
